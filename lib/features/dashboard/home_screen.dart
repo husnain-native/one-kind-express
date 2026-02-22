@@ -34,75 +34,75 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: r.hp(2)),
-        LuxCard(
-          padding: EdgeInsets.symmetric(
-            vertical: r.hp(2),
-            horizontal: r.wp(5),
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Track your luxury parcels',
-                      style: TextStyle(
-                        fontSize: r.sp(16),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    SizedBox(height: r.hp(1)),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        vertical: r.hp(1.1),
-                        horizontal: r.wp(3),
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.04),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Row(
-                        children: [
-                          const Icon(Icons.search_rounded,
-                              color: AppColors.textSecondary),
-                          SizedBox(width: r.wp(2)),
-                          Expanded(
-                            child: Text(
-                              'Enter tracking code',
-                              style: TextStyle(
-                                color: AppColors.textSecondary,
-                                fontSize: r.sp(11),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(r.wp(2)),
-                            decoration: const BoxDecoration(
-                              color: AppColors.gold,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.near_me_rounded,
-                              size: r.sp(18),
-                              color: AppColors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(width: r.wp(3)),
-              Icon(
-                Icons.local_shipping_rounded,
-                size: r.sp(32),
-                color: AppColors.gold,
-              ),
-            ],
-          ),
-        ),
+        // LuxCard(
+        //   padding: EdgeInsets.symmetric(
+        //     vertical: r.hp(2),
+        //     horizontal: r.wp(5),
+        //   ),
+        //   child: Row(
+        //     children: [
+        //       Expanded(
+        //         child: Column(
+        //           crossAxisAlignment: CrossAxisAlignment.start,
+        //           children: [
+        //             // Text(
+        //             //   'Track your luxury parcels',
+        //             //   style: TextStyle(
+        //             //     fontSize: r.sp(16),
+        //             //     fontWeight: FontWeight.w600,
+        //             //   ),
+        //             // ),
+        //             // SizedBox(height: r.hp(1)),
+        //             Container(
+        //               padding: EdgeInsets.symmetric(
+        //                 vertical: r.hp(1.1),
+        //                 horizontal: r.wp(3),
+        //               ),
+        //               decoration: BoxDecoration(
+        //                 color: Colors.white.withOpacity(0.04),
+        //                 borderRadius: BorderRadius.circular(16),
+        //               ),
+        //               child: Row(
+        //                 children: [
+        //                   const Icon(Icons.search_rounded,
+        //                       color: AppColors.textSecondary),
+        //                   SizedBox(width: r.wp(2)),
+        //                   Expanded(
+        //                     child: Text(
+        //                       'Enter tracking code',
+        //                       style: TextStyle(
+        //                         color: AppColors.textSecondary,
+        //                         fontSize: r.sp(11),
+        //                       ),
+        //                     ),
+        //                   ),
+        //                   Container(
+        //                     padding: EdgeInsets.all(r.wp(2)),
+        //                     decoration: const BoxDecoration(
+        //                       color: AppColors.gold,
+        //                       shape: BoxShape.circle,
+        //                     ),
+        //                     child: Icon(
+        //                       Icons.near_me_rounded,
+        //                       size: r.sp(18),
+        //                       color: AppColors.black,
+        //                     ),
+        //                   ),
+        //                 ],
+        //               ),
+        //             ),
+        //           ],
+        //         ),
+        //       ),
+        //       SizedBox(width: r.wp(3)),
+        //       Icon(
+        //         Icons.local_shipping_rounded,
+        //         size: r.sp(32),
+        //         color: AppColors.gold,
+        //       ),
+        //     ],
+        //   ),
+        // ),
         SizedBox(height: r.hp(2.5)),
         Text(
           'Quick actions',

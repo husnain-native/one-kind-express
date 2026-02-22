@@ -13,14 +13,20 @@ class LuxBottomNav extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onTabSelected;
 
+  static const int homeIndex = 0;
+  static const int trackingIndex = 1;
+  static const int gpsIndex = 2;
+  static const int chatIndex = 3;
+  static const int profileIndex = 4;
+
   @override
   Widget build(BuildContext context) {
     final r = Responsive(context);
 
     return Container(
       padding: EdgeInsets.only(
-        left: r.wp(8),
-        right: r.wp(8),
+        left: r.wp(6),
+        right: r.wp(6),
         bottom: r.hp(1.4) + MediaQuery.viewPaddingOf(context).bottom,
         top: r.hp(1.2),
       ),
@@ -34,29 +40,34 @@ class LuxBottomNav extends StatelessWidget {
           _NavItem(
             icon: Icons.home_rounded,
             label: 'Home',
-            isActive: currentIndex == 0,
-            onTap: () => onTabSelected(0),
+            index: homeIndex,
+            currentIndex: currentIndex,
+            onTap: () => onTabSelected(homeIndex),
           ),
           _NavItem(
             icon: Icons.local_shipping_rounded,
             label: 'Tracking',
-            isActive: currentIndex == 1,
-            onTap: () => onTabSelected(1),
+            index: trackingIndex,
+            currentIndex: currentIndex,
+            onTap: () => onTabSelected(trackingIndex),
           ),
-          _CentralFab(
-            onTap: () => onTabSelected(1),
+          _GpsNavItem(
+            isActive: currentIndex == gpsIndex,
+            onTap: () => onTabSelected(gpsIndex),
           ),
           _NavItem(
             icon: Icons.chat_bubble_rounded,
             label: 'Chat',
-            isActive: currentIndex == 2,
-            onTap: () => onTabSelected(2),
+            index: chatIndex,
+            currentIndex: currentIndex,
+            onTap: () => onTabSelected(chatIndex),
           ),
           _NavItem(
             icon: Icons.person_rounded,
             label: 'Profile',
-            isActive: currentIndex == 3,
-            onTap: () => onTabSelected(3),
+            index: profileIndex,
+            currentIndex: currentIndex,
+            onTap: () => onTabSelected(profileIndex),
           ),
         ],
       ),
@@ -68,19 +79,22 @@ class _NavItem extends StatelessWidget {
   const _NavItem({
     required this.icon,
     required this.label,
-    required this.isActive,
+    required this.index,
+    required this.currentIndex,
     required this.onTap,
   });
 
   final IconData icon;
   final String label;
-  final bool isActive;
+  final int index;
+  final int currentIndex;
   final VoidCallback onTap;
+
+  bool get isActive => currentIndex == index;
 
   @override
   Widget build(BuildContext context) {
     final r = Responsive(context);
-    final color = isActive ? AppColors.gold : AppColors.textSecondary;
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -88,25 +102,35 @@ class _NavItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: r.sp(20), color: color),
-          SizedBox(height: r.hp(0.3)),
-          Text(
-            label,
-            style: TextStyle(
-              color: color,
-              fontSize: r.sp(10),
-              fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
+          isActive
+              ? _GoldCircle(
+                  child: Icon(icon, size: r.sp(20), color: AppColors.black),
+                )
+              : Icon(icon, size: r.sp(20), color: AppColors.textSecondary),
+          if (!isActive) ...[
+            SizedBox(height: r.hp(0.3)),
+            Text(
+              label,
+              style: TextStyle(
+                color: AppColors.textSecondary,
+                fontSize: r.sp(10),
+                fontWeight: FontWeight.w400,
+              ),
             ),
-          ),
+          ],
         ],
       ),
     );
   }
 }
 
-class _CentralFab extends StatelessWidget {
-  const _CentralFab({required this.onTap});
+class _GpsNavItem extends StatelessWidget {
+  const _GpsNavItem({
+    required this.isActive,
+    required this.onTap,
+  });
 
+  final bool isActive;
   final VoidCallback onTap;
 
   @override
@@ -114,21 +138,59 @@ class _CentralFab extends StatelessWidget {
     final r = Responsive(context);
 
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onTap,
-      child: Container(
-        width: r.wp(16),
-        height: r.wp(16),
-        decoration: const BoxDecoration(
-          color: AppColors.gold,
-          shape: BoxShape.circle,
-        ),
-        child: Icon(
-          Icons.near_me_rounded,
-          size: r.sp(22),
-          color: AppColors.black,
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          isActive
+              ? _GoldCircle(
+                  child: Icon(
+                    Icons.gps_fixed_rounded,
+                    size: r.sp(20),
+                    color: AppColors.black,
+                  ),
+                )
+              : Icon(
+                  Icons.gps_fixed_rounded,
+                  size: r.sp(20),
+                  color: AppColors.textSecondary,
+                ),
+          if (!isActive) ...[
+            SizedBox(height: r.hp(0.3)),
+            Text(
+              'GPS',
+              style: TextStyle(
+                color: AppColors.textSecondary,
+                fontSize: r.sp(10),
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }
 }
 
+class _GoldCircle extends StatelessWidget {
+  const _GoldCircle({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final r = Responsive(context);
+
+    return Container(
+      width: r.wp(16),
+      height: r.wp(16),
+      decoration: const BoxDecoration(
+        color: AppColors.gold,
+        shape: BoxShape.circle,
+      ),
+      alignment: Alignment.center,
+      child: child,
+    );
+  }
+}

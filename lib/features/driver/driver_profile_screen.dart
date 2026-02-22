@@ -84,7 +84,6 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        
         children: [
           SizedBox(height: r.hp(1)),
           _buildHeader(r),
@@ -94,8 +93,7 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
           _buildContactCard(r),
           SizedBox(height: r.hp(1.6)),
           _buildVehicleCard(r),
-          SizedBox(height: r.hp(12)),
-          //padding: Padding(padding: EdgeInsets.only(bottom: r.hp(10))),
+          SizedBox(height: r.hp(4)),
         ],
       ),
     );

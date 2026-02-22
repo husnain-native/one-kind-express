@@ -4,9 +4,9 @@ import '../../core/utils/responsive.dart';
 import '../../core/widgets/lux_bottom_nav.dart';
 import '../../theme/app_theme.dart';
 import '../driver/driver_profile_screen.dart';
+import '../gps/gps_screen.dart';
 import '../orders/active_order_screen.dart';
 import '../orders/all_orders_screen.dart';
-import '../orders/order_history_screen.dart';
 import 'home_screen.dart';
 
 class DashboardShell extends StatefulWidget {
@@ -26,6 +26,7 @@ class _DashboardShellState extends State<DashboardShell> {
     final pages = [
       const HomeScreen(),
       const ActiveOrderScreen(),
+      const GpsScreen(),
       const AllOrdersScreen(),
       const DriverProfileScreen(),
     ];
